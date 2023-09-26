@@ -49,6 +49,17 @@
         display: none;
         background-color: #4CAF50;
     }
+    .credit_span{
+      height:100px;
+      width:100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+    }
+    .credit_span h5{
+      font-size: 60px;
+    }
 
 
     @media (max-width: 900px) {
@@ -93,12 +104,46 @@
     <a href="/home">Home</a>
     <a href="/home/credits" >Purchases & Credits</a>
     <a href="/home/products">Your Products</a>
-    <a href="#" >Sign Out</a>
+    <a href="/home/signout" >Sign Out</a>
   </div>
   <div class="content">
     <div class="miniContent" id="credits">
       <h2>Your Credits</h2>
       <p><span><%= profileData.amazonId %></span> credits</p>
+      <span class="credit_span"> <h5><%= profileData.credits %></h5></span>
+      <h2>Your Purchases</h2>
+      <% if (profileData.purchases.length==0) { %>
+       <p>No purchases yet</p>
+    <% } else { %>
+        <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <!-- <th>Normal link</th>
+                <th>Affiliated link</th> -->
+                <th>Purchased</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% profileData.products.forEach(function(item) { %>
+                    <tr>
+                        <td>
+                            <%= item.name %>
+                        </td>
+                        <td>
+                            <%= item.dateAdded %>
+                        </td>
+                        <!-- <td><%= item.normalLink %></td>
+                        <td><%= item.afLink %></td> -->
+                        <td><%= item.purchased %></td>
+                      </tr>
+                    <!-- <li></li> -->
+                <% }); %>
+             
+            </tbody>
+          </table>
+    <% } %>
     </div>
 </div>
     

@@ -8,20 +8,23 @@ const tokenHandler=require('../methods/token')
 
 router.get('/', checkToken,async(req, res) => {
     let profileData=await dataProvider.getProfileData(req.token)
-    profileData=await parseHomeData(profileData)
+    // let newProds=await parseHomeData(profileData.products)
+    // console.log(newProds)
     res.render('home',{profileData:profileData});
   });
 
   router.get('/credits', checkToken,async(req, res) => {
     let profileData=await dataProvider.getProfileData(req.token)
-    profileData=await parseHomeData(profileData)
+    // let newProds=await parseHomeData(profileData.products)
+    // console.log(profileData)
     res.render('home/credits',{profileData:profileData});
   });
 
   router.get('/products', checkToken,async(req, res) => {
     let profileData=await dataProvider.getProfileData(req.token)
-    profileData=await parseHomeData(profileData)
-    console.log(profileData);
+    // let newProds=await parseHomeData(profileData.products)
+    // console.log(newProds)
+    // console.log(profileData);
     // console.log(profileData);
     res.render('home/products',{profileData:profileData});
   });
@@ -39,25 +42,41 @@ router.get('/', checkToken,async(req, res) => {
     // res.render('home/products',{profileData:profileData});
   });
 
-  const parseHomeData=(profileData)=>{
+  router.get('/signout', checkToken,async(req, res) => {
+    // let profileData=await dataProvider.getProfileData(req.token)
+    // let newProds=await parseHomeData(profileData.products)
+    res.cookie('aflNetTok', '', { expires: new Date(0) });
+    // console.log('Removed cookie')
+    res.redirect('/home')
+    // res.render('home/credits',{profileData:profileData});
+  });
+
+  const parseHomeData=(products)=>{
     return new Promise((resolve, reject) => {
       function formatDate(num){
         let options={ year: 'numeric', month: 'long', day: 'numeric' };
         let date=new Date(num).toLocaleDateString('en-US', options)
-        console.log(date);
         return(date)
       }
-      let products=profileData.products
+      
       if(products[0]){
-        products.forEach(item=>{
-          let dateNow=formatDate(item.dateAdded)
-          item.dateNow=dateNow
+        let newProds = [...products]
+
+        let newProds2=[]
+        newProds.forEach(item=>{
+          if(item.dateAdded){
+            item.dateNew=formatDate(item.dateAdded)
+            newProds2.push(item) 
+          }
+          else{
+            newProds2.push(item) 
+          }
         })
-        profileData.products=products
-        console.log(profileData.products);
-        resolve(profileData)
+        console.log(newProds2);
+        // console.log(newProfileData.products);
+        resolve(products)
       }else{
-        resolve(profileData)
+        resolve(products)
       }
     })
   }
