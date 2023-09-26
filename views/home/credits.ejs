@@ -50,12 +50,6 @@
         background-color: #4CAF50;
     }
 
-    .miniContent{
-      display: none;
-    }
-    .miniContent#home{
-      display: block;
-    }
 
     @media (max-width: 900px) {
     .sidenav {
@@ -99,22 +93,14 @@
     <a href="/home">Home</a>
     <a href="/home/credits" >Purchases & Credits</a>
     <a href="/home/products">Your Products</a>
-    <a href="#signout" >Sign Out</a>
+    <a href="#" >Sign Out</a>
   </div>
   <div class="content">
-    <div class="miniContent" id="home">
-      <h2>Home</h2>
-      <p><%= profileData.email %></p>
-      <p><%= profileData.amazonId %></p>
-    </div>
     <div class="miniContent" id="credits">
-      <h2>Credits</h2>
-      <p>Credits Page</p>
+      <h2>Your Credits</h2>
+      <p><span><%= profileData.amazonId %></span> credits</p>
     </div>
-    <div class="miniContent" id="products">
-      <h2>Products</h2>
-      <p>Products Page</p>
-    </div>
+</div>
     
     <script>
       function changeContent(link) {

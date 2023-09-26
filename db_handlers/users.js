@@ -58,9 +58,22 @@ const getUserByAmazon=async(amazon_code)=>{
     
 }
 
+const getUserById=async(id)=>{
+  return new Promise(async(resolve, reject) => {
+      const userOwner=await User.findOne({_id:id})
+      if(userOwner) {
+          resolve(userOwner)
+      }
+      else{
+          resolve(false)
+      }
+  })
+  
+}
 
 
 
 
 
-module.exports={addToUsers,getUserByEmail,getUserByAmazon,deleteUser}
+
+module.exports={addToUsers,getUserByEmail,getUserByAmazon,deleteUser,getUserById}

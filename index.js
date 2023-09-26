@@ -17,10 +17,12 @@ app.use(cookieParser());
 const signupRoutes = require('./routes/signup');
 const loginRoutes = require('./routes/login');
 const homeRoutes = require('./routes/home');
+const apiRoutes = require('./routes/checkLink');
 
 app.use('/signup', signupRoutes);
 app.use('/login', loginRoutes);
 app.use('/home', homeRoutes);
+app.use('/checkLink',apiRoutes)
 
 
 

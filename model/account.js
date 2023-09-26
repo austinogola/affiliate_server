@@ -20,7 +20,9 @@ const productSchema = new mongoose.Schema({
     },
     name:{type:String,default:''},
     normalLink:{type:String,default:''},
-    afLink:{type:String,default:''}
+    afLink:{type:String,default:''},
+    purchased:{type:Number,default:0},
+    dateAdded:{type:Number,required:true}
   });
 
   const purchaseSchema = new mongoose.Schema({

@@ -7,6 +7,7 @@ const checkToken = (req, res, next) => {
       res.redirect('/login');
     } else {
       // Token exists, proceed to the next middleware/route
+      req.token=token
       next();
     }
   };

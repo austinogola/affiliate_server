@@ -14,7 +14,8 @@ const activitySchema = new mongoose.Schema({
         ref: 'User', 
         required: true
     },
-    activityCredits:{type:Number, required: true}
+    activityCredits:{type:Number, required: true},
+    activityDate:{type:String, required: true}
   });
   
 
@@ -24,6 +25,7 @@ const ProductSchema=new mongoose.Schema({
             ref: 'User', 
             required: true
         },
+        dateAdded:{type:Number, required: true},
         name:{type:String, required: true,default:''},
         normalLink:{type:String,default:''},
         afLink:{type:String, required: true},
