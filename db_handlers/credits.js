@@ -3,6 +3,10 @@ const User=require('../model/user')
 
 const addCredit=async(creditDetails)=>{
     return new Promise((resolve, reject) => {
+        if(!creditDetails){
+            resolve(false)
+            return
+        }
         try {
             let acc=new Credit(creditDetails)
             acc.save().then(credit=>{

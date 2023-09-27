@@ -24,13 +24,9 @@ router.post('/', async(req, res) => {
       const passwordValid=await comparePassword(password, userExists.password)
       if(passwordValid){
         let userId=userExists._id
-        let account=await AccountHandler.getAccountByUserId(userId)
-        let accountId=account._id
+        let amazonId=userExists.amazonId
         const maxAge = 720 * 60 * 60;
-        let aflNetTok=await tokenHandler.newToken(userId,accountId,maxAge)
-        // res.status(200).json({success:true,token:aflNetTok})
-        // res.redirect(`/home?token=${aflNetTok}`);
-        // res.cookie('ghostToken', ghostToken, { httpOnly: true, maxAge }); // St
+        let aflNetTok=await tokenHandler.newToken(userId,amazonId,maxAge)
           res.cookie('aflNetTok', aflNetTok);
           res.redirect(`/home`);
       }

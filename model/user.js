@@ -10,7 +10,7 @@ const UserSchema=new mongoose.Schema({
         type:String,
         required:true
     },
-    amazon_code:{
+    amazonId:{
         type:String,
         required:true
     }

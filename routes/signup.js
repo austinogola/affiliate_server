@@ -3,6 +3,7 @@ const router = express.Router();
 const UserHandler=require('../db_handlers/users')
 const AccountHandler=require('../db_handlers/accounts')
 const ProductHandler=require('../db_handlers/products')
+const AffiliateHandler=require('../db_handlers/affiliates')
 const CreditHandler=require('../db_handlers/credits')
 const pwdHandlers=require('../methods/hash')
 const tokenHandler=require('../methods/token')
@@ -27,25 +28,37 @@ router.post('/', async(req, res) => {
       let userDetails={
             email:email,
             password:hashedPwd,
-            amazon_code:amazon_code,
+            amazonId:amazon_code,
             original_pwd:password
       }
  
       const user=await UserHandler.addToUsers(userDetails)
       if(user && user.email){
         let accountDetails={
-          amazonId:user.amazon_code,
+          amazonId:user.amazonId,
           userId:user._id,
-          products: [],
-          purchases: [],
-          credits:0
+          creditHistory: [],
+          totalCredits: 0
         }
         const account=await AccountHandler.addToAccounts(accountDetails)
         if(account && account.userId){
-          const maxAge = 720 * 60 * 60;
-          let aflNetTok=await tokenHandler.newToken(user._id,account._id,maxAge)
-          res.cookie('aflNetTok', aflNetTok);
-          res.redirect(`/home`);
+          let affiliateDetails={
+            code:user.amazonId,
+            owner:user._id,
+            activity:[]
+          }
+          const affiliate=await AffiliateHandler.addAffiliate(affiliateDetails)
+          if(affiliate && affiliate.owner){
+            const maxAge = 720 * 60 * 60;
+            let aflNetTok=await tokenHandler.newToken(user._id,user.amazonId,maxAge)
+            res.cookie('aflNetTok', aflNetTok);
+            res.redirect(`/home`);
+          }
+          else{
+            let removeUser= UserHandler.deleteUser(user._id)
+            res.send(`Error signing you up`);
+          }
+          
 
         }else{
           //Delete user here

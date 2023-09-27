@@ -1,41 +1,43 @@
 const mongoose=require('mongoose')
 
 const activitySchema = new mongoose.Schema({
+    stamp:{type:Number,required:true},
     activityType:{ 
         type: String,
         default:'buy'
     },
-    cost:{
+    product:{
+        name:{type:String},
         price:{type:Number},
         currency:{type:String}
     },
-    activityOwner:{
+    creditOwner:{
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User', 
         required: true
     },
-    activityCredits:{type:Number, required: true},
-    activityDate:{type:String, required: true}
+    creditRewarded:{type:Number, required: true},
   });
   
 
-const ProductSchema=new mongoose.Schema({
+const AffiliateSchema=new mongoose.Schema({
+        code:{type:String,required:true},
         owner:{
             type: mongoose.Schema.Types.ObjectId, 
             ref: 'User', 
             required: true
         },
-        dateAdded:{type:Number, required: true},
-        name:{type:String, required: true,default:''},
-        normalLink:{type:String,default:''},
-        afLink:{type:String, required: true},
+        lastUsed:{
+            type:Date,
+            default:null
+        },
         activity:{
             type: [activitySchema],
             default: []
-        },
+        }
     
 })
 
-const Product=mongoose.model('Product',ProductSchema)
+const Affiliate=mongoose.model('Affiliate',AffiliateSchema)
 
-module.exports=Product
+module.exports=Affiliate

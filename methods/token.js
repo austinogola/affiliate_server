@@ -1,10 +1,10 @@
 const jwt=require('jsonwebtoken')
 require('dotenv').config()
 
-const newToken=(userId,accountId,maxAge)=>{
+const newToken=(userId,amazonId,maxAge)=>{
     return new Promise((resolve, reject)=>{
         const token=jwt.sign(
-            {accountId,userId},
+            {userId,amazonId},
             process.env.jwtSecret,
             {
                 expiresIn:maxAge
@@ -22,6 +22,7 @@ const verifyToken = (token) => {
           resolve(false);
         } else {
           // Token verification successful
+            // console.log(TokenDetails)
           resolve(TokenDetails);
         }
       });

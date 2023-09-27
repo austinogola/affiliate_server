@@ -49,13 +49,75 @@
         display: none;
         background-color: #4CAF50;
     }
+    .miniContent p span{
+        color: #007BFF;
+    }
+    .tableWrapper{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
 
-    .miniContent{
-      display: none;
+    table {
+        width: 80%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
     }
-    .miniContent#home{
-      display: block;
+    td{
+        max-height: 50px;
+        max-width: 150px;
+        overflow: auto;
+        padding: 3px;
     }
+
+    th, td {
+        border: 1px solid black;
+        /* padding: 10px; */
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tbody tr:nth-child(odd) {
+        background-color: #f9f9f9;
+    }
+
+    /* Style for even rows */
+    tbody tr:nth-child(even) {
+        background-color: #e6e6e6;
+    }
+
+
+    .hidden {
+        display: none;
+    }
+    #showFormBtn{
+        width: 100px;
+        height: 40px;
+        cursor: pointer;
+        background-color: #007BFF;
+        border: none;
+        outline: none;
+        color: white;
+        padding: 5px;
+        /* border-radius: 50%; */
+    }
+    #addProductForm{
+        border: #007BFF 1px solid;
+        width: 400px;
+        padding: 10px;
+        margin-top: 5px;
+    }
+    #addProductForm input{
+        height: 20px;
+        margin-bottom: 10px;
+    }
+    #addProductForm textarea{
+        margin-bottom: 10px;
+    }
+
 
     @media (max-width: 900px) {
     .sidenav {
@@ -102,36 +164,22 @@
     <a href="/home/signout" >Sign Out</a>
   </div>
   <div class="content">
-    <div class="miniContent" id="home">
-      <h2>Home</h2>
-      <p><%= profileData.email %></p>
-      <p><%= profileData.amazonId %></p>
-    </div>
-    <div class="miniContent" id="credits">
-      <h2>Credits</h2>
-      <p>Credits Page</p>
-    </div>
     <div class="miniContent" id="products">
-      <h2>Products</h2>
-      <p>Products Page</p>
+      <h2>Your Code</h2>
+      <p><span><%= profileData.amazonId %></span></p>
     </div>
-    
-    <script>
-      function changeContent(link) {
-        const linkName = link.getAttribute('href').slice(1);
-        const allMiniContent=document.querySelectorAll('.miniContent')
-        allMiniContent.forEach(item=>{
-          if(item.getAttribute('id')==`${linkName}`){
-            item.style.display='block'
-          }
-          else{
-            item.style.display='none'
-          }
-        })
-        // const content = document.getElementById('content');
-        // content.innerText = `You clicked: ${link.innerText}`;
-      }
-    </script>
+  
   </div>
+  <script>
+      function hideForm(button) {
+        const myForm = document.querySelector('form#addProductForm');
+        myForm.classList.add('hidden');
+      }
+      function showForm(button) {
+        const myForm = document.querySelector('form#addProductForm');
+        myForm.classList.remove('hidden');
+      }
+
+    </script>
 </body>
 </html>

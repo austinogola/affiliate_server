@@ -1,0 +1,49 @@
+const Affiliate=require('../model/affiliate')
+
+const addAffiliate=async(affiliateDetails)=>{
+    return new Promise(async(resolve, reject) => {
+        if(!affiliateDetails){
+            resolve(false)
+        }
+        else{
+            try {
+                let aff=new Affiliate(affiliateDetails)
+                aff.save().then(async affiliate=>{
+                    resolve(affiliate)
+                })
+                
+            } catch (error) {
+                resolve(error.message)
+            }
+        }
+        
+        
+    })
+    
+}
+
+
+const getToShow=async(amazonId)=>{
+    return new Promise(async(resolve, reject) => {
+            const allAffs=await Affiliate.find()
+            let winner=await determineWinner(allAffs,amazonId)
+            resolve({winner:winner.code,you:amazonId})
+        })
+    
+}
+
+const determineWinner=async(arr,amazonId)=>{
+
+    arr=arr.filter(item=>item.code!=amazonId)
+    return new Promise(async(resolve, reject) => {
+        arr.forEach(item=>{
+            if(!item.lastUsed || item.lastUsed===null){
+                resolve(item)
+                return
+            }
+        })
+        resolve(arr[0])
+    })
+}
+
+module.exports={addAffiliate,getToShow}

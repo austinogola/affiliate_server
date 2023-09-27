@@ -1,4 +1,4 @@
-const Product=require('../model/product')
+const Product=require('../model/affiliate')
 const User=require('../model/user')
 const AccountHandler=require('./accounts')
 

@@ -12,60 +12,29 @@ const Credit = require('./credit')
 //     }
 //   });
 
-const productSchema = new mongoose.Schema({
-    productId:{
+const creditSchema = new mongoose.Schema({
+    creditId:{
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Product', 
+        ref: 'Credit', 
         required: true
-    },
-    name:{type:String,default:''},
-    normalLink:{type:String,default:''},
-    afLink:{type:String,default:''},
-    purchased:{type:Number,default:0},
-    dateAdded:{type:Number,required:true}
+    }
   });
 
-  const purchaseSchema = new mongoose.Schema({
-    productId:{
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Product', 
-        required: true
-    },
-    owner:{
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'User', 
-        required: true
-    },
-    valid:{
-        type:Number,
-        required: true
-    },
-    value:{
-        price:{type:Number},
-        currency:{type:String}
-    },
-    creditAmount:{type:Number,required: true}
-  });
 
-const AccountSchema=new mongoose.Schema({
-    amazonId:{
-        type:String,
-        required:true
-    },  
+  
+
+const AccountSchema=new mongoose.Schema({  
     userId: { 
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User', 
         required: true
      }, 
-    products: {
-        type: [productSchema],
+    creditHistory:{
+        type: [creditSchema],
         default: []
     },
-    purchases:{
-        type: [purchaseSchema],
-        default: []
-    }, 
-    credits:{type:Number,default:0}
+    amazonId:{type:String,required:true},
+    totalCredits:{type:Number,default:0}
     
 })
 

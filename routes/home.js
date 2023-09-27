@@ -20,16 +20,16 @@ router.get('/', checkToken,async(req, res) => {
     res.render('home/credits',{profileData:profileData});
   });
 
-  router.get('/products', checkToken,async(req, res) => {
+  router.get('/code', checkToken,async(req, res) => {
     let profileData=await dataProvider.getProfileData(req.token)
     // let newProds=await parseHomeData(profileData.products)
     // console.log(newProds)
     // console.log(profileData);
     // console.log(profileData);
-    res.render('home/products',{profileData:profileData});
+    res.render('home/code',{profileData:profileData});
   });
 
-  router.post('/products', checkToken,async(req, res) => {
+  router.post('/code', checkToken,async(req, res) => {
     const {name,normalLink,afLink,userId}=req.body
     if(name && normalLink && afLink && userId){
       let tokenVer=await tokenHandler.verifyToken(req.token)
@@ -38,7 +38,7 @@ router.get('/', checkToken,async(req, res) => {
         let added=await ProductHandler.addProduct(userId,productDetail)
       }
     }
-    res.redirect('/home/products')
+    res.redirect('/home/code')
     // res.render('home/products',{profileData:profileData});
   });
 

@@ -11,10 +11,13 @@ const getProfileData=async(token)=>{
         let user=await UserHandler.getUserById(tokenDetails.userId)
         email=user.email
         userId=tokenDetails.userId
-        amazonId=user.amazon_code
-        const {products}=await getProfileProducts(tokenDetails.userId)
-        const {purchases,credits}=await getProfilePurchasesAndCredits(tokenDetails.userId)
-        resolve({ email,amazonId,products,credits,purchases,userId})
+        amazonId=user.amazonId
+        const account= await AccountHandler.getAccountByUserId(userId)
+        const {totalCredits}=account
+        // const {products}=await getProfileProducts(tokenDetails.userId)
+        // const {purchases,credits}=await getProfilePurchasesAndCredits(tokenDetails.userId)
+        // resolve({ email,amazonId,products,credits,purchases,userId})
+        resolve({ email,amazonId,userId,totalCredits})
     })
 }
 
