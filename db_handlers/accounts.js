@@ -17,6 +17,30 @@ const addToAccounts=async(accountDetails)=>{
     })
     
 }
+const addAccountCredits=async(creditDetails,userId)=>{
+    return new Promise(async(resolve, reject) => {
+        try {
+
+            let addingToHistory=await Account.findOneAndUpdate(
+                { userId: userId },
+                { $push: { creditHistory: creditDetails._id } },
+                { new: true }
+            );
+
+            let increment=await Account.updateOne(
+                { userId: userId },
+                { $inc: { totalCredits: creditDetails.value } },
+                { new: true }
+            );
+            resolve(increment)
+            
+        } catch (error) {
+            resolve(error.message)
+        }
+        
+    })
+    
+}
 
 const checkExisting=async(email)=>{
     return new Promise(async(resolve, reject) => {
@@ -101,5 +125,6 @@ module.exports={
     getAccountByUserId,
     getAccountProducts,
     getAccountPurchasesAndCredits,
-    addProductToAccount
+    addProductToAccount,
+    addAccountCredits
 }

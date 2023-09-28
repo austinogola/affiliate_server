@@ -13,6 +13,7 @@ connectDb()
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(cookieParser());
 app.use(cors());
 
@@ -21,10 +22,13 @@ const loginRoutes = require('./routes/login');
 const homeRoutes = require('./routes/home');
 const apiRoutes = require('./routes/api');
 
+
 app.use('/signup', signupRoutes);
 app.use('/login', loginRoutes);
 app.use('/home', homeRoutes);
 app.use('/api',apiRoutes)
+app.use('/',homeRoutes)
+
 
 
 

@@ -45,9 +45,9 @@ const getUserByEmail=async(email)=>{
     })
     
 }
-const getUserByAmazon=async(amazon_code)=>{
+const getUserByAmazon=async(amazonId)=>{
     return new Promise(async(resolve, reject) => {
-        const userOwner=await User.findOne({amazon_code:amazon_code})
+        const userOwner=await User.findOne({amazonId:amazonId})
         if(userOwner) {
             resolve(userOwner)
         }

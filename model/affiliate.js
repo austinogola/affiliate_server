@@ -1,22 +1,12 @@
 const mongoose=require('mongoose')
 
-const activitySchema = new mongoose.Schema({
-    stamp:{type:Number,required:true},
-    activityType:{ 
-        type: String,
-        default:'buy'
-    },
-    product:{
-        name:{type:String},
-        price:{type:Number},
-        currency:{type:String}
-    },
-    creditOwner:{
+
+const creditSchema = new mongoose.Schema({
+    creditId:{
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'User', 
+        ref: 'Credit', 
         required: true
-    },
-    creditRewarded:{type:Number, required: true},
+    }
   });
   
 
@@ -32,7 +22,7 @@ const AffiliateSchema=new mongoose.Schema({
             default:null
         },
         activity:{
-            type: [activitySchema],
+            type: [creditSchema],
             default: []
         }
     

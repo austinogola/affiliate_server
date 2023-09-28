@@ -15,6 +15,7 @@ router.get('/', (req, res) => {
 
 router.post('/', async(req, res) => {
   const { amazon_code, email,password } = req.body;
+  console.log(req.body)
   if(!email || !password || !amazon_code){
     res.status(403).json({message: 'Missing details'})
   }

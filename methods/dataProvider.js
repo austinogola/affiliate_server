@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const tokenHandler=require('./token')
 const UserHandler=require('../db_handlers/users')
 const AccountHandler=require('../db_handlers/accounts')
+const CreditHandler=require('../db_handlers/credits')
 
 
 const getProfileData=async(token)=>{
@@ -13,11 +14,13 @@ const getProfileData=async(token)=>{
         userId=tokenDetails.userId
         amazonId=user.amazonId
         const account= await AccountHandler.getAccountByUserId(userId)
-        const {totalCredits}=account
+        const {totalCredits,creditHistory}=account
+        const yourCreds=await CreditHandler.getCreditsByOwner(userId)
+
         // const {products}=await getProfileProducts(tokenDetails.userId)
         // const {purchases,credits}=await getProfilePurchasesAndCredits(tokenDetails.userId)
         // resolve({ email,amazonId,products,credits,purchases,userId})
-        resolve({ email,amazonId,userId,totalCredits})
+        resolve({ email,amazonId,userId,totalCredits,yourCreds})
     })
 }
 

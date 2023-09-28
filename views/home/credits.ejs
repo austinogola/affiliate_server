@@ -58,7 +58,37 @@
       
     }
     .credit_span h5{
-      font-size: 60px;
+      font-size: 30px;
+    }
+    ul{
+      display: flex;
+    }
+    li{
+      list-style: none;
+      margin-left:5px;
+      margin-right: 5px;
+    }
+    li:nth-child(1){
+      list-style: disc;
+    }
+    table {
+      width: 90%;
+      border-collapse: collapse;
+      margin-bottom: 50px;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+    #nameRow{
+      max-width: 150px; /* Adjust the max-width as needed */
+    overflow: auto;
     }
 
 
@@ -112,6 +142,29 @@
       <p><span><%= profileData.amazonId %></span> credits</p>
       <span class="credit_span"> <h5><%= profileData.totalCredits %></h5></span>
     </div>
+    <table>
+      <thead>
+      <tr>
+        <th>Date</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Credits</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% profileData.yourCreds.forEach(credit => { %>
+          <tr>
+              <td><%= new Date(credit.stamp).toString().slice(0, 24) %></td>
+              <td id='nameRow'><%= credit.product.name.split("-")[0] %></td>
+              <td><%= credit.product.price %></td>
+              <td><%= credit.value %></td>
+        </tr>
+    <% }); %>
+      
+    </tbody>
+    </table>
+    
+
 </div>
     
     <script>

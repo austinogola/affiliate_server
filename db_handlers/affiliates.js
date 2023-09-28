@@ -21,6 +21,36 @@ const addAffiliate=async(affiliateDetails)=>{
     })
     
 }
+const updateAffiliateUse=async(creditInfo)=>{
+    return new Promise(async(resolve, reject) => {
+        if(!creditInfo){
+            resolve(false)
+        }
+        else{
+            try {
+                const newLast=new Date(creditInfo.stamp)
+                let changeLastUsed=await Affiliate.findOneAndUpdate(
+                    {owner:creditInfo.benefactor},
+                    {lastUsed: newLast },
+                    { new: true }
+                );
+
+                let addingToActivity=await Affiliate.findOneAndUpdate(
+                    { owner:creditInfo.benefactor},
+                    { $push: { activity: creditInfo._id } },
+                    { new: true }
+                );
+                
+                
+            } catch (error) {
+                console.log(error.message)
+                resolve(error.message)
+            }
+        }
+        
+        
+    })
+}
 
 
 const getToShow=async(amazonId)=>{
@@ -46,4 +76,4 @@ const determineWinner=async(arr,amazonId)=>{
     })
 }
 
-module.exports={addAffiliate,getToShow}
+module.exports={addAffiliate,getToShow,updateAffiliateUse}
