@@ -7,7 +7,27 @@
       font-family: Arial, sans-serif;
       background-color: #f4f4f4;
       margin: 0;
-      padding: 20px;
+/*      padding: 20px;*/
+    }
+    .navBar{
+      width:100%;
+      height:70px;
+      display: flex;
+      justify-content: flex-start;
+      padding: 10px;
+      align-items: center;
+      background-color: white;
+      margin-bottom: 50px;
+    }
+    .logSpan{
+      display: flex;
+      align-items: center;
+/*      flex-direction: column;*/
+      justify-content: flex-start;
+    }
+    .logoSpan span{
+      font-size: 16px;
+      font-weight: 800;
     }
 
     .container {
@@ -54,6 +74,12 @@
   </style>
 </head>
 <body>
+  <div class="navBar">
+    <span class="logSpan">
+      <img src="/public/icons/credit-64.png" alt="I">
+      <span><h3>AZN Shoppers</h3></span>
+    </span>
+  </div>
   <div class="container">
     <h1>Login</h1>
     <form action="/login" method="post">

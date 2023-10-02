@@ -6,16 +6,20 @@ const app = express();
 const cors = require('cors');
 require('dotenv').config()
 const connectDb=require('./config/db')
+app.use(express.static("./public"))
+app.use('/public/icons/', express.static('./public/icons'))
 
 
 //connect to mongodb
 connectDb()
+
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(cookieParser());
 app.use(cors());
+
 
 const signupRoutes = require('./routes/signup');
 const loginRoutes = require('./routes/login');

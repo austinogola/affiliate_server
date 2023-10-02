@@ -66,6 +66,7 @@ const determineWinner=async(arr,amazonId)=>{
 
     arr=arr.filter(item=>item.code!=amazonId)
     return new Promise(async(resolve, reject) => {
+
         arr.forEach(item=>{
             if(!item.lastUsed || item.lastUsed===null){
                 resolve(item)
@@ -76,4 +77,17 @@ const determineWinner=async(arr,amazonId)=>{
     })
 }
 
-module.exports={addAffiliate,getToShow,updateAffiliateUse}
+const getUserAffiliates=async(userId)=>{
+    return new Promise(async(resolve, reject) => {
+        if(userId) {
+            const allAffs=await Affiliate.find()
+            resolve(allAffs)
+        }
+        else{
+            resolve(false)
+        }
+        
+    })
+}
+
+module.exports={addAffiliate,getToShow,updateAffiliateUse,getUserAffiliates}

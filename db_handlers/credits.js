@@ -22,7 +22,7 @@ const addCredit=async(creditInfo)=>{
                 price:creditInfo.product.price,
                 currency:creditInfo.product.currency,
             }
-            const value=(product.price/10).toFixed(2)
+            const value = Math.floor(product.price*10)/100
             const creditDetails={stamp,creditOwner,benefactor,benefactorCode,product,value}
             let acc=new Credit(creditDetails)
             acc.save().then(async credit=>{

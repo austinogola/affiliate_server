@@ -3,6 +3,7 @@ const tokenHandler=require('./token')
 const UserHandler=require('../db_handlers/users')
 const AccountHandler=require('../db_handlers/accounts')
 const CreditHandler=require('../db_handlers/credits')
+const AffiliateHandler=require('../db_handlers/affiliates')
 
 
 const getProfileData=async(token)=>{
@@ -21,6 +22,8 @@ const getProfileData=async(token)=>{
         // const {purchases,credits}=await getProfilePurchasesAndCredits(tokenDetails.userId)
         // resolve({ email,amazonId,products,credits,purchases,userId})
         resolve({ email,amazonId,userId,totalCredits,yourCreds})
+        const affiliates= await AffiliateHandler.getUserAffiliates(userId)
+        console.log(affiliates);
     })
 }
 

@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const router = express.Router();
 const checkToken=require('../middleware/checkToken')
 const dataProvider=require('../methods/dataProvider')
@@ -9,8 +10,10 @@ const tokenHandler=require('../methods/token')
 router.get('/', checkToken,async(req, res) => {
     let profileData=await dataProvider.getProfileData(req.token)
     // let newProds=await parseHomeData(profileData.products)
-    // console.log(newProds)
+    // console.log(profileData)
+   
     res.render('home',{profileData:profileData});
+    // res.sendFile(path.join(__dirname, '/public/home.html'));
   });
 
   router.get('/credits', checkToken,async(req, res) => {

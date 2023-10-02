@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Webpage with SideNav and ContentArea</title>
+  <title>AffilNetHub</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     body {
@@ -11,18 +11,139 @@
       margin: 0;
       padding: 0;
     }
+    .root{
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 20% 80%;
+      width: 100%;
+    }
 
     .sidenav {
       height: 100vh;
-      width: 250px;
       background-color: #FFFFFF; /* Green */
       /* padding-top: 20px; */
     }
+    .logoDiv{
+      height:80px;
+      border-bottom: 1px solid grey;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .logoDiv span{
+      font-weight: 600;
+      font-size: 20px;
+    }
+    ul.nav{
+      margin: 0;
+      padding: 0;
+    }
+    li.navItem{
+      height: 40px;
+      width: 100%;
+      /* border: #202124 1px solid; */
+      list-style: none;
+      margin: 0;
+      padding: 5px;
+      display: flex;
+      padding-left: 10px;
+    }
+    li.navItem:nth-child(4){
+      margin-top: 200px;
+    }
+    .navItem span{
+      margin: 5px;
+      min-width: 30px;
+    }
+    li.navItem:hover {
+      background-color: #E0EEEE;
+      color: white;
+    }
+    .navItem img{
+      width: 24px;
+      height: 24px;
+    }
 
-    .content {
-      flex: 1;
-      padding: 10px;
-      background-color: #F5F7FD; /* Light Gray */
+
+    .contentWrapper{
+      background-color: #DAD9DE;
+      /* padding: 20px; */
+      padding-left: 30px;
+      padding-right: 30px;
+      /* padding-right: 30px;
+      padding-top: 80px; */
+    }
+    .idDivWrapper{
+      background-color: #DAD9DE;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80px;
+      /* margin-bottom: 20px; */
+      /* border: 1px solid salmon; */
+    }
+    .idDiv{
+      background-color: white;
+      border-radius: 5px;
+      height: 80%;
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+    .idDiv p{
+      font-weight: 600;
+      font-size: 20px;
+    }
+    .summary{
+      display: flex;
+      align-items: center;
+      /* justify-content: center; */
+      width:100%;
+      background-color: DAD9DE;
+      margin-bottom: 20px;
+    }
+    .summaryDiv{
+      height:60px;
+      margin-right: 20px;
+      border-radius: 5px;
+      width: 15%;
+      background-color: white;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    #summaryTitle{
+      font-size: 16px;
+      font-weight: 700;
+      color: #DAD9DE;
+    }
+    #summaryValue{
+      font-size: 20px;
+      font-weight: 800;
+    }
+    .summaryLogo{
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      background-color: #DAD9DE;
+      margin: 5px;
+    }
+    .content{
+      background-color: white;
+      border-radius: 5px;
+      height: 500px;
+      padding: 20px;
+      padding-top: 10px;
+    }
+    .recentDiv h3{
+      font-size: 15px;
     }
 
     .sidenav a {
@@ -30,20 +151,17 @@
       text-decoration: none;
       color: black;
       display: block;
-      border: #202124 1px solid;
+      width: 100%;
+      /* border: #202124 1px solid; */
       height: 50px;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
     }
     .sidenav a#logo {
 
     }
 
-    .sidenav a:hover {
-      background-color: #555;
-      color: white;
-    }
     
     .topnav{
         display: none;
@@ -53,9 +171,33 @@
     .miniContent{
       display: none;
     }
+    table {
+      width: 90%;
+      border-collapse: collapse;
+      margin-bottom: 50px;
+    }
+
+    th, td {
+      border: 1px solid black;
+      /* padding: 8px; */
+      text-align: left;
+      
+    }
+    td{
+      /* margin-top: 20px;
+      margin-bottom: 20px; */
+    }
+
+    th {
+      /* background-color: #f2f2f2; */
+      border-bottom: 1px solid grey;
+      color: grey;
+    }
     .miniContent#home{
       display: block;
     }
+
+
 
     @media (max-width: 900px) {
     .sidenav {
@@ -90,18 +232,116 @@
 
   </style>
 </head>
-<body>
-    <div class="topnav">
+<body> 
+    <div class="root">
+      <div class="sidenav">
+        <div class="logoDiv">
+          <a href="/home">
+            <img src="/public/icons/credit-64.png" alt="I">
+            <span>AZN Shoppers</span>
+          </a>
+        </div>
+        <div class="menuDiv">
+          <ul class="nav">
+            <li class="navItem"><a href="/home">
+              <span>
+                <img src="/public/icons/icons8-home-48.png" alt="I">
+              </span>
+                <span>
+                  Home
+                </span>
+            </a></li>
+            <li class="navItem"><a href="/credit">
+              <span>
+                <img src="/public/icons/icons8-money-48.png" alt="I">
+              </span>
+                <span>
+                  Credits
+                </span>
+            </a>
+          </li>
+          <li class="navItem"><a href="/code">
+            <span>
+              <img src="/public/icons/icons8-link-48.png" alt="I">
+            </span>
+              <span>
+                Affiliate
+              </span>
+          </a>
+        </li>
+        <li class="navItem"><a href="/home/signout">
+          <span>
+            <img src="/public/icons/icons8-sign-out-50.png" alt="I">
+          </span>
+            <span>
+              Sign Out
+            </span>
+        </a>
+      </li>
+          </ul>
+        </div>
+      </div>
+      <div class="contentWrapper">
+        <div class="idDivWrapper">
+          <div class="idDiv">
+            <p>Home</p>
+          </div>
+        </div>
+        
+        <div class="summary">
+          <div class='summaryDiv'id="creditSummary">
+            <span id="summaryTitle">Credits</span>
+            <span id="summaryValue"><%= profileData.totalCredits %></span>
+          </div>
+          <div class='summaryDiv'id="spendSummary">
+            <span id="summaryTitle">Spend</span>
+            <span id="summaryValue">$<%= profileData.yourCreds.reduce((sum, obj) => sum + (obj.product.price || 0), 0) %></span>
+          </div>
+          <div class='summaryDiv'id="creditSummary">
+            <span id="summaryTitle">Earnings</span>
+            <span id="summaryValue">$645</span>
+          </div>
+        </div>
+        <div class="content">
+          <div class="recentDiv">
+              <h3>Recent Transactions</h3>
+              <table>
+                <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Price</th>
+                  <th>Credits</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% profileData.yourCreds.forEach(credit => { %>
+                    <tr>
+                        <td><%= new Date(credit.stamp).toLocaleDateString() %></td>
+                        <td><%= new Date(credit.stamp).toLocaleTimeString() %></td>
+                        <!-- <td id='nameRow'><%= credit.product.name.split("-")[0] %></td> -->
+                        <td><%= credit.product.price %></td>
+                        <td><%= credit.value %></td>
+                  </tr>
+              <% }); %>
+                
+              </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="topnav">
         <button class="hamburger" onclick="toggleNav()">☰</button>
     </div>
-  <div class="sidenav">
+  <div >
     <a href="/home" id="logo"><h2>LOGO</h2></a>
     <a href="/home">Home</a>
     <a href="/home/credits" >Credits</a>
     <a href="/home/code">Your Code</a>
     <a href="/home/signout" >Sign Out</a>
-  </div>
-  <div class="content">
+  </div> -->
+  <!-- <div class="content">
     <div class="miniContent" id="home">
       <h2>Home</h2>
       <p><%= profileData.email %></p>
@@ -114,7 +354,7 @@
     <div class="miniContent" id="products">
       <h2>Products</h2>
       <p>Products Page</p>
-    </div>
+    </div> -->
     
     <script>
       function changeContent(link) {
