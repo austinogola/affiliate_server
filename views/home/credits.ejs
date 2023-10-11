@@ -1,188 +1,773 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Webpage with SideNav and ContentArea</title>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      min-height: 100vh;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Shoppers</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&family=Roboto+Condensed:wght@400;700&family=Roboto+Slab:wght@400;500;700&family=Stick+No+Bills:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            display: flex;
+            /* min-height: 100vh; */
+            margin: 0;
+            padding: 0;
+            font-family: 'Stick No Bills', sans-serif;
+        }
+        .root{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            position: relative;
+            display: flex;
+            /* overflow: scroll; */
+            /* justify-content: center; */
+        }
+        .sidenav {
+            height: 1200px;
+            background-color: #172B4D; /* Green */
+            color: white;
+            font-family: 'Stick No Bills', sans-serif;
+            /* position: fixed; */
+            width: 15%;
+         }
+         .logoDiv{
+            height:80px;
+            /* border-bottom: 1px solid #FFC400; */
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .logoSpan{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width:90%;
+            text-align: center;
+        }
+        .logoDiv span{
+            font-weight: 600;
+            font-size: 20px;
+        }
+        .logo{
+          display: flex;
+          align-items: center;
+        }
+        .logo img{
+          width: 50px;
+          height: 50px;
+        }
+        .logo #amazon{
+            background-color: #FFC400;
+            padding: 3px;
+            color: #FFFFFF;
+        }
+        .logo #shoppers{
+            background-color: white;
+            border-top: 1px solid #FFC400;
+            border-bottom: 1px solid #FFC400;
+            padding: 3px;
+        }
+        ul.nav{
       margin: 0;
       padding: 0;
+      width: 100%;
     }
-
-    .sidenav {
-      height: 100vh;
-      width: 250px;
-      background-color: #FFFFFF; /* Green */
-      /* padding-top: 20px; */
-    }
-
-    .content {
-      flex: 1;
-      padding: 10px;
-      background-color: #F5F7FD; /* Light Gray */
-    }
-
-    .sidenav a {
-      /* padding: 8px 16px; */
-      text-decoration: none;
-      color: black;
-      display: block;
-      border: #202124 1px solid;
-      height: 50px;
+    li.navItem{
+      height: 40px;
+      width: 100%;
+      /* border: #202124 1px solid; */
+      list-style: none;
+      margin: 0;
+      padding-top: 5px;
+      padding-bottom: 5px;
       display: flex;
       justify-content: center;
       align-items: center;
+      /* padding-left: 10px; */
     }
-    .sidenav a#logo {
-
+    li.navItem:nth-child(4){
+      margin-top: 200px;
+      /* position: absolute;
+      bottom: 10px;
+      width: 100%; */
     }
-
-    .sidenav a:hover {
-      background-color: #555;
-      color: white;
-    }
-    
-    .topnav{
-        display: none;
-        background-color: #4CAF50;
-    }
-    .credit_span{
-      height:100px;
-      width:100px;
+    .navItem span{
       display: flex;
       justify-content: center;
+      align-items: center;
+      /* margin: 5px; */
+      min-width: 30px;
+      
+    }
+    li.navItem:hover {
+      /* background-color: #E0EEEE;
+      color: white; */
+    }
+    .sidenav a {
+      text-decoration: none;
+      color: white;
+      display: block;
+      width: 100%;
+      height: 50px;
+      display: flex;
+      justify-content: flex-start;
       align-items: center;
       
     }
-    .credit_span h5{
-      font-size: 30px;
+    .navItem a{
+      letter-spacing: 1px;
     }
-    ul{
+    .navItem img{
+      width: 24px;
+      height: 24px;
+      padding-left: 15px;
+      margin-right: 15px;
+    }
+    img.active{
+      border-left: 3px solid white;
+    }
+    .navItem.active{
+      /* border-left: 5px solid white; */
+    }
+
+    .contentWrapper{
+      /* background-color: #DAD9DE; */
+      /* background-color: #F9FAFA; */
+      background-color: #DDE8F7;
+      padding: 10px;
+      padding-top: 10px;
+      padding-right: 10px;
+      padding-left: 10px;
+      height: 100vh;
+      width: 85%;
+      /* overflow: auto; */
+      /* padding-left: 30px;
+      padding-right: 30px; */
+      /* padding-right: 30px;
+       */
+    }
+    .idDiv{
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        height: 70px;
+        display: flex;
+        justify-content:  flex-end;
+        align-items: center;
+        border-radius: 5px;
+
+    }
+    #profileSpan{
       display: flex;
+      justify-content:  space-around;
+      align-items: center;
+      
     }
-    li{
-      list-style: none;
-      margin-left:5px;
+    #profileParent{
+      height: 40px;
+      width:40px;
+      border-radius: 50%;
+      background-color: #FA52A5;
+      margin: 5px;
+      display: flex;
+      justify-content:  center;
+      align-items: center;
+      color: #FB9255;
+      font-size: 18px;
+      position:relative;
+      cursor: pointer;
+    }
+    #profileSignOut{
+      position:absolute;
+      height: 50px;
+      width: 150px;
+      background-color: white;
+      bottom: -60px;
+      right: 10px;
+      border: 1px solid #DAD9DE;
+      border-radius: 5px;
+      padding: 10px;
+      display: none;
+    }
+    #profileSignOut a{
+      text-decoration: none;
+      color: black;
+      text-align: center;
+    }
+    #profileSignOut a:hover{
+      background-color: 1px solid #DAD9DE;
+    }
+
+    .locationDiv{
+      height: 50px;
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+
+    .summary{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width:100%;
+      background-color: #DDE8F7;
+      /* background-color: #F9FAFA; */
+      margin-bottom: 20px;
+      /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+      /* border:1px solid greenyellow; */
+    }
+    .summaryDiv{
+      height:70px;
+      /* margin-right: 20px; */
+      border-radius: 5px;
+      width: 25%;
+      background-color: white;
+      /* border:1px solid #FFC400;; */
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .summaryDiv:nth-child(1){
+      margin-right: 10px;
+    }
+    .summaryDiv:nth-child(2){
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+    .summaryDiv:nth-child(3){
+      /* margin-right: 10px; */
+      margin-left: 10px;
+    }
+    .summaryDiv:nth-child(4){
+      /* margin-right: 10px; */
+      margin-left: 10px;
+    }
+    #summaryTitle{
+      font-size: 16px;
+      font-weight: 700;
+      color: #172B4D;
+    }
+    #summaryValue{
+      font-size: 20px;
+      font-weight: 800;
+      color: #FE991F;
+    }
+    .graphDiv{
+      height: 400px;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding: 10px;
+      /* border: #FA52A5 1px solid; */
+    }
+    #chartDiv{
+      border: #FB9255 1px solid;
+    }
+    #recentTitle{
+      margin-left: 10px;
+      
+    }
+    .recentDivWrapper{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      margin-top: 10px;
+      
+      
+    }
+    .recentDiv{
+      width: 100%;
+      padding: 5px;
+      height: 100%;
+
+      border-radius: 5px;
+      background-color: #DDE8F7;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+      padding-top: 10px;
+      
+    }
+    #recentHeadingWrapper{
+      background-color: #DDE8F7;
+      display: flex;
+      height: 80px;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      
+    }
+    #recentHeading{
+      background-color: white;
+      display: flex;
+      height: 100%;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    #recentHeading a{
+      text-decoration: none;
+      color: #C1C1C1;
+    }
+    .recentItemWrapper{
+      background-color:#DDE8F7 ;
+      display: flex;
+      height: 50px;
+      justify-content: center;
+      align-items: center;
+      /* padding-left: 10px;
+      padding-right: 10px; */
+      /* margin-top: 15px; */
+      margin-bottom: 15px;
+
+    }
+    .recentItem{
+      background-color: white;
+      height: 100%;
+      border-radius: 10px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 1px;
+      padding-bottom: 1px;
+    }
+    .recentItem span{
       margin-right: 5px;
+      display: flex;
+      justify-content: center;
+      /* border:red solid 1px; */
+      overflow-x: auto;
+      overflow-y: auto;
+      max-height: 100%;
+      
     }
-    li:nth-child(1){
-      list-style: disc;
+    .recentItem span:nth-child(1){
+      font-weight: 800;
+      width: 6%;
+      justify-content: flex-start;
+      
     }
+    .recentItem span:nth-child(2){
+      font-weight: 600;
+      width: 12%;
+    }
+    .recentItem span:nth-child(3){
+      font-weight: 400;
+      width: 30%;
+      background-color: #E0EAF8;
+      border:1px solid #366AD2 ;
+      font-size: 13px;
+      color: #1A5ACD;
+      border-radius: 3px;
+    }
+    .recentItem span:nth-child(4){
+      font-weight: 600;
+      width: 10%;
+    }
+    .recentItem span:nth-child(5){
+      font-weight: 500;
+      width: 12%;
+    }
+    .recentItem span:nth-child(6){
+      font-weight: 800;
+      width: 10%;
+    }
+    .recentItem.heading span:nth-child(3){
+      border: none;
+
+      /* width: 10%; */
+    }
+    #viewAll{
+      display: flex;
+      justify-content: center;
+      text-align: center;
+    }
+    .circleParent {
+    width: 200px;
+    height: 200px;
+    border: 5px solid grey;
+    border-radius: 50%;
+    position: relative;
+  }
+
+  .semicircle {
+    width: 0;
+    height: 0;
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-bottom: 100px solid grey;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .circleContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .pieDiv{
+    width:50%;
+    background-color: #FFFFFF;
+    height: 350px;
+    padding: 10px;
+  }
+  .pieTitleDiv{
+    display: flex;
+    justify-content: space-between;
+  }
+ .circleWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+  .parentCircle{
+    width:200px;
+    height: 200px;
+    border: 3px solid ;
+    /* border-image: 
+    linear-gradient(to bottom right, #1058CD 50%, #FE981E 50%) 1; */
+    border-radius: 50% !important;
+    /* border-image: 
+    linear-gradient(to bottom right, red 25%, green 25%, blue 50%) 1;
+     */
+    /* background-color: #FA52A5; */
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    /* display: grid;
+    grid-template-columns: 1fr 1fr; */
+    /* flex-wrap: wrap; */
+    /* overflow: hidden; */
+   
+  }
+  .circleQuotient{
+    /* width:50%;
+    height:50%; */
+    width: 100%;
+    height: 50%;
+    
+    
+  }
+  .circleQuotient:nth-child(1){
+    /* background-color: #1A5ACD; */
+    border-radius:50pc 50pc 0pc 0px;
+    border-top:green 1px solid;
+    
+    /* border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%; */
+  }
+  .circleQuotient:nth-child(2){
+    /* background-color: #E0EAF8; */
+    border-radius:0px 0px 50pc 50pc;
+    border-bottom:green 1px solid;
+  }
+  .circleQuotient:nth-child(3){
+    background-color: #FFC400;
+  }
+  .circleQuotient:nth-child(4){
+    background-color: #C1C1C1;
+  }
     table {
       width: 90%;
       border-collapse: collapse;
       margin-bottom: 50px;
+     
     }
 
     th, td {
       border: 1px solid black;
-      padding: 8px;
-      text-align: left;
+      /* padding: 8px; */
+      text-align: center;
+      height: 30px;
+      
     }
-
-    th {
-      background-color: #f2f2f2;
-    }
-    #nameRow{
-      max-width: 150px; /* Adjust the max-width as needed */
-    overflow: auto;
-    }
-
-
-    @media (max-width: 900px) {
-    .sidenav {
-        width: 220px;
-    }
-    }
-
-    @media (max-width: 750px) {
-        .sidenav {
-            width: 200px;
-            /* display: none; */
-        }
-
-    }
-
-    @media (max-width: 700px) {
-        /* .sidenav {
-            display: none;
-        } */
-         /* .topnav{
-            display: block;
-            width: 100%;
-        } */
-
-        .sidenav-toggle {
-            display: block;
-            padding: 8px 16px;
-            text-decoration: none;
-            color: white;
-        } 
-    }
-
-  </style>
+    </style>
 </head>
 <body>
-    <div class="topnav">
-        <button class="hamburger" onclick="toggleNav()">☰</button>
-    </div>
-  <div class="sidenav">
-    <a href="/home" id="logo"><h2>LOGO</h2></a>
-    <a href="/home">Home</a>
-    <a href="/home/credits" >Credits</a>
-    <a href="/home/code">Your Code</a>
-    <a href="/home/signout" >Sign Out</a>
-  </div>
-  <div class="content">
-    <div class="miniContent" id="credits">
-      <h2>Your Credits</h2>
-      <p><span><%= profileData.amazonId %></span> credits</p>
-      <span class="credit_span"> <h5><%= profileData.totalCredits %></h5></span>
-    </div>
-    <table>
-      <thead>
-      <tr>
-        <th>Date</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Credits</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% profileData.yourCreds.forEach(credit => { %>
-          <tr>
-              <td><%= new Date(credit.stamp).toString().slice(0, 24) %></td>
-              <td id='nameRow'><%= credit.product.name.split("-")[0] %></td>
-              <td><%= credit.product.price %></td>
-              <td><%= credit.value %></td>
-        </tr>
-    <% }); %>
-      
-    </tbody>
-    </table>
-    
+    <div class="root">
+        <div class="sidenav">
+            <div class="logoDiv">
+                <span class="logoSpan">
+                  <a href="/home">
+                      <span class="logo">
+                        <img src="/public/icons/icons8-credit-64.png" alt="I">
+                        <span>AMZ Shoppers</span>
+                        
+                          <!-- <span id="amazon">AMAZON</span><span id="shoppers">SHOPPERS</span> -->
+                    </span>
+                  </a>
+                </span>
+            </div>
+            <ul class="nav">
+                <li class="navItem">
+                    <a href="/home">
+                        <span class="imageSpan">
+                          <img class src="/public/icons/icons8-home-50-white.png" alt="I">
+                        </span>
+                        <span>
+                          Home
+                        </span>
+                    </a>
+                </li>
+                <li class="navItem">
+                    <a href="/home/credits">
+                        <span>
+                          <img src="/public/icons/icons8-money-48-white.png" class="active" alt="I">
+                        </span>
+                          <span>
+                            Credits
+                          </span>
+                      </a>
+                </li>
+                <li class="navItem">
+                    <a href="home/affiliate">
+                        <span>
+                          <img src="/public/icons/icons8-link-48-white.png" alt="I">
+                        </span>
+                          <span>
+                            Affiliate
+                          </span>
+                      </a>
+                </li>
+                <li class="navItem">
+                    <a href="/home/signout">
+                        <span>
+                          <img src="/public/icons/icons8-sign-out-50-white.png" alt="I">
+                        </span>
+                          <span>
+                            Sign Out
+                          </span>
+                      </a>
+                </li>
+            </ul>
+        </div>
 
-</div>
-    
-    <script>
-      function changeContent(link) {
-        const linkName = link.getAttribute('href').slice(1);
-        const allMiniContent=document.querySelectorAll('.miniContent')
-        allMiniContent.forEach(item=>{
-          if(item.getAttribute('id')==`${linkName}`){
-            item.style.display='block'
-          }
-          else{
-            item.style.display='none'
-          }
-        })
-        // const content = document.getElementById('content');
-        // content.innerText = `You clicked: ${link.innerText}`;
-      }
-    </script>
-  </div>
+    <div class="contentWrapper">
+        <div class="idDiv">
+            <span id="profileSpan">
+                <span><%= profileData.amazonId %></span>
+                <span id="profileParent" onclick="toggleSignOutSpan()">
+                  <p><%= profileData.amazonId[0] %></p>
+                  <div id="profileSignOut">
+                    <a href="/home/signout">Sign Out</a>
+                  </div>
+                </span>
+            </span>
+        </div>
+        <div class="locationDiv">
+
+        </div>
+        <div class="pieDiv">
+            <div class="pieGraph">
+                <div class="pieTitleDiv">
+                    <h3>Your Credits</h3>
+                    <p><%= profileData.amazonId %></p>
+                </div>
+                <div class="circleWrapper">
+                    <!-- class="parentCircle" -->
+                <div class="parentCircle">
+                    
+                    <!-- <div class="circleQuotient">
+                        
+                    </div>
+                    <div class="circleQuotient">
+                        
+                    </div> -->
+                </div>
+            </div>
+            </div>
+        </div>
+       
+        <div class="graphDiv">
+          <div id="chartDiv" style="width:100%; height:300px; "></div>
+        </div>
+        <div>
+          <h4 id="recentTitle">Recent Credits</h4>
+          <!-- <div id="recentHeadingWrapper">
+            <div id="recentHeading">
+              
+              <a href="/home/credits">View all</a>
+            </div>
+          </div> -->
+        </div>
+        <div class="recentDivWrapper">
+          <div class="recentDiv">
+            <div class="recentItemWrapper">
+              <div class="recentItem heading" >
+                <span>
+                  No.
+                </span>
+                <span>Date</span>
+                <span>Item</span>
+                <span>Amount</span>
+                <span>Status</span>
+                <span>Credits</span>
+              </div>
+            </div>
+            <% profileData.yourCreds.slice(0,5).forEach((credit,index) => { %>
+            <div class="recentItemWrapper">
+              <div class="recentItem">
+                <span><%= index + 1%>.</span>
+                  <span><%= new Date(credit.stamp).toLocaleDateString() %></span>
+                  <!-- <span><%= new Date(credit.stamp).toLocaleTimeString() %></span> -->
+                  <span id='nameRow'><%= credit.product.name.split("-")[0] %></span>
+                  <span><%= credit.product.price %></span>
+                  <span>Pending</span>
+                  <span><%= credit.value %></span>
+            </div>
+          </div>
+        <% }); %>
+        <span id="viewAll"><a href="/home/credits" >View all</a></span>
+          </div>
+        </div>
+    </div>
 </body>
+<script src="https://code.jscharting.com/2.9.0/jscharting.js"></script>
+<script>
+  
+  function getCookieValue(cookieName) {
+  const cookies = document.cookie.split('; ');
+
+  for (const cookie of cookies) {
+    const [name, value] = cookie.split('=');
+
+    if (name === cookieName ) {
+      return cookie; // Cookie found with the specified value
+    }
+  }
+
+  return false; // Cookie not found or doesn't have the specified value
+}
+function initiateChart(data){
+  console.log(data);
+  const {month,year} = data.period
+  const {points}=data
+  const {meta}=data
+  const {values,freqs} = points
+  JSC.Chart('chartDiv', {
+    annotations: [
+            {
+              label_text: `<b>Your code usage ${month},${year}</b>`,
+              position: 'top left'
+            }
+          ],
+    xAxis:{
+      scale: {
+              type: 'time',
+              interval: { unit: 'days', multiplier: 1 }
+            },
+            defaultTick_line_visible: false,
+            formatString: 'MMM',
+            crosshair_enabled: true,
+            label_text:`${month}`
+    },
+    yAxis: [
+    {
+              id: 'y1',
+              defaultTick: {
+                label_text: '$%value',
+                line_visible: true
+              },
+              scale_range: [0, meta.maxVal+25]
+            },
+            {
+              id: 'y2',
+              defaultTick: {
+                label_text: '%value',
+                text_align:'left',
+                line_visible: true
+              },
+              scale_range: [0, meta.maxFreq+5]
+            }
+  ],
+  xAxis: {
+            scale: {
+              type: 'time',
+              interval: { unit: 'month', multiplier: 1 }
+            },
+            defaultTick_line_visible: false,
+            formatString: 'MMM',
+            crosshair_enabled: true
+          },
+          
+  series:[{
+      name: "Total $ value ",
+      points: values,
+      type: 'vertical column',
+      yAxis: 'y1'
+    },
+    {
+      name: "Code use",
+      points: freqs,
+      type: 'line',
+      yAxis: 'y2'
+    },
+  ]
+  //  series: [
+  //     {
+  //        points: [
+  //           {x: 'Apples', y: 50},
+  //           {x: 'Oranges', y: 42}
+  //        ]
+  //     }
+  //  ]
+  });
+}
+let graphData
+$.ajax({
+    url: '/api/getProfileGraphData',
+    type: 'GET',
+    success: function (data) {
+      // Store the received data in localStorage
+      graphData=data.graphData
+      // console.log(graphData);
+      const {code,spend}=graphData
+      initiateChart(code)
+      // localStorage.setItem('myData', JSON.stringify(data));
+    }
+  });
+
+
+  
+  
+  
+  function toggleSignOutSpan() {
+    console.log(thisMonthCredsTotal);
+   const graphData=getCookieValue('graphData')
+   console.log(graphData);
+
+    const span = document.getElementById('profileSignOut');
+    span.style.display = (span.style.display === 'none' || span.style.display === '') ? 'block' : 'none';
+  }
+
+  document.addEventListener('click', function(event) {
+  const profileParent = document.getElementById('profileParent');
+  const profileSignOut = document.getElementById('profileSignOut');
+  
+  if (event.target !== profileParent && !profileParent.contains(event.target)) {
+    profileSignOut.style.display = 'none';
+  }
+});
+
+function chh(){
+    console.log('jdjvnsjvkndskj');
+  }
+  chh()
+</script>
 </html>

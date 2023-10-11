@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AffilNetHub</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&family=Roboto+Condensed:wght@400;700&family=Roboto+Slab:wght@400;500;700&family=Stick+No+Bills:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    
+    .root{
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 15% 85%;
+      width: 100%;
+      position: relative;
+    }
+
+    
+    
+
+    <div class="sidenav">
+            
+            <div class="menuDiv">
+              <ul class="nav">
+                <li >
+                  
+                </li>
+                <li class="navItem">
+              </li>
+              <li class="navItem">
+            </li>
+            <li class="navItem">
+          </li>
+              </ul>
+            </div>
+          </div>
+    </div>
+    .idDivWrapper{
+      background-color: #DAD9DE;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80px;
+      /* margin-bottom: 10px; */
+      /* border-left: 1px solid #FFC400; */
+      /* margin-bottom: 20px; */
+      /* border: 1px solid salmon; */
+    }
+    .idDiv{
+      background-color: white;
+      border-radius: 5px;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+    .idDiv p{
+      font-weight: 600;
+      font-size: 16px;
+    }
+   
+    
+    
+    .summaryLogo{
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      background-color: #DAD9DE;
+      margin: 5px;
+    }
+    .graphWrapper{
+      height: 250px;
+      width:100%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* border:1px solid greenyellow; */
+    }
+    .graphDiv{
+      background-color: #DAD9DE;
+      width:100%;
+      height:100%;
+      display: grid;
+      grid-template-columns: 50% 50%;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+    }
+    .firstGraph{
+      background-color: white;
+      height:100%;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+    .secondGraph{
+      background-color: white;
+      height:100%;
+      border-radius: 5px;
+      margin-left: 10px;
+      
+    }
+    .content{
+      background-color: white;
+      border-radius: 5px;
+      height: 500px;
+      padding: 20px;
+      padding-top: 10px;
+      margin-top: 20px;
+    }
+    .recentDiv h3{
+      font-size: 15px;
+    }
+
+    
+    .sidenav a#logo {
+
+    }
+
+    
+    .topnav{
+        display: none;
+        background-color: #4CAF50;
+    }
+
+    .miniContent{
+      display: none;
+    }
+    table {
+      width: 90%;
+      border-collapse: collapse;
+      margin-bottom: 50px;
+    }
+
+    th, td {
+      border: 1px solid black;
+      /* padding: 8px; */
+      text-align: left;
+      
+    }
+    td{
+      /* margin-top: 20px;
+      margin-bottom: 20px; */
+    }
+
+    th {
+      /* background-color: #f2f2f2; */
+      border-bottom: 1px solid grey;
+      color: grey;
+    }
+    .miniContent#home{
+      display: block;
+    }
+
+
+
+    @media (max-width: 900px) {
+    .sidenav {
+        width: 220px;
+    }
+    }
+
+    @media (max-width: 750px) {
+        .sidenav {
+            width: 200px;
+            /* display: none; */
+        }
+
+    }
+
+    @media (max-width: 700px) {
+        /* .sidenav {
+            display: none;
+        } */
+         /* .topnav{
+            display: block;
+            width: 100%;
+        } */
+
+        .sidenav-toggle {
+            display: block;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: white;
+        } 
+    }
+
+  </style>
+</head>
+<body> 
+    <div class="root">
+      <div class="sidenav">
+        <div class="logoDiv">
+          <span class="logoSpan">
+            <a href="/home">
+              <!-- <img src="/public/icons/credit-64.png" alt="I"> -->
+              <span class="logo">
+                <span id="amazon">AMAZON</span>
+                <span id="shoppers">SHOPPERS</span>
+              </span>
+            </a>
+          </span>
+          
+        </div>
+        <div class="menuDiv">
+          <ul class="nav">
+            <li class="navItem active">
+              <a href="/home">
+                <span class="imageSpan">
+                  <img src="/public/icons/icons8-home-48.png" alt="I">
+                </span>
+                <span>
+                  Home
+                </span>
+              </a>
+            </li>
+            <li class="navItem"><a href="/credit">
+              <span>
+                <img src="/public/icons/icons8-money-48.png" alt="I">
+              </span>
+                <span>
+                  Credits
+                </span>
+            </a>
+          </li>
+          <li class="navItem"><a href="/code">
+            <span>
+              <img src="/public/icons/icons8-link-48.png" alt="I">
+            </span>
+              <span>
+                Affiliate
+              </span>
+          </a>
+        </li>
+        <li class="navItem"><a href="/home/signout">
+          <span>
+            <img src="/public/icons/icons8-sign-out-50.png" alt="I">
+          </span>
+            <span>
+              Sign Out
+            </span>
+        </a>
+      </li>
+          </ul>
+        </div>
+      </div>
+      <div class="contentWrapper">
+        <div class="idDivWrapper">
+          <div class="idDiv">
+            <p>Home</p>
+            <span id="profileSpan">
+              <span>amazon-id</span>
+              <span id="profileParent"></span>
+            </span>
+          </div>
+        </div>
+        
+        
+        
+        <div class="graphWrapper">
+          <div class="graphDiv">
+            <div class="firstGraph"></div>
+            <div class="secondGraph"></div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="recentDiv">
+              <h3>Recent Transactions</h3>
+              <table>
+                <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Price</th>
+                  <th>Credits</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% profileData.yourCreds.forEach(credit => { %>
+                    <tr>
+                        <td><%= new Date(credit.stamp).toLocaleDateString() %></td>
+                        <td><%= new Date(credit.stamp).toLocaleTimeString() %></td>
+                        <!-- <td id='nameRow'><%= credit.product.name.split("-")[0] %></td> -->
+                        <td><%= credit.product.price %></td>
+                        <td><%= credit.value %></td>
+                  </tr>
+              <% }); %>
+                
+              </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="topnav">
+        <button class="hamburger" onclick="toggleNav()">☰</button>
+    </div>
+  <div >
+    <a href="/home" id="logo"><h2>LOGO</h2></a>
+    <a href="/home">Home</a>
+    <a href="/home/credits" >Credits</a>
+    <a href="/home/code">Your Code</a>
+    <a href="/home/signout" >Sign Out</a>
+  </div> -->
+  <!-- <div class="content">
+    <div class="miniContent" id="home">
+      <h2>Home</h2>
+      <p><%= profileData.email %></p>
+      <p><%= profileData.amazonId %></p>
+    </div>
+    <div class="miniContent" id="credits">
+      <h2>Credits</h2>
+      <p>Credits Page</p>
+    </div>
+    <div class="miniContent" id="products">
+      <h2>Products</h2>
+      <p>Products Page</p>
+    </div> -->
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Price</th>
+          <th>Credits</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Date One</td>
+          <td>Time One</td>
+          <td>Price One</td>
+          <td>Credit One</td>
+        </tr>
+        <tr>
+          <td>Date Two</td>
+          <td>Time Two</td>
+          <td>Price Two</td>
+          <td>Credit Two</td>
+        </tr>
+        <tr>
+          <td>Date Three</td>
+          <td>Time Three</td>
+          <td>Price Three</td>
+          <td>Credit Three</td>
+        </tr>
+        <tr>
+          <td>Date Four</td>
+          <td>Time Four</td>
+          <td>Price Four</td>
+          <td>Credit Four</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <script>
+      function changeContent(link) {
+        const linkName = link.getAttribute('href').slice(1);
+        const allMiniContent=document.querySelectorAll('.miniContent')
+        allMiniContent.forEach(item=>{
+          if(item.getAttribute('id')==`${linkName}`){
+            item.style.display='block'
+          }
+          else{
+            item.style.display='none'
+          }
+        })
+        // const content = document.getElementById('content');
+        // content.innerText = `You clicked: ${link.innerText}`;
+      }
+    </script>
+  </div>
+</body>
+</html>

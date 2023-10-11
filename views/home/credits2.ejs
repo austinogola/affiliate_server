@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Shoppers</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&family=Roboto+Condensed:wght@400;700&family=Roboto+Slab:wght@400;500;700&family=Stick+No+Bills:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            display: flex;
+            /* min-height: 100vh; */
+            margin: 0;
+            padding: 0;
+            font-family: 'Stick No Bills', sans-serif;
+        }
+        .root{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            /* justify-content: center; */
+        }
+        .sidenav {
+            height: 100vh;
+            background-color: #FFFFFF; /* Green */
+            font-family: 'Stick No Bills', sans-serif;
+            /* position: fixed; */
+            width: 15%;
+         }
+         .logoDiv{
+            height:80px;
+            border-bottom: 1px solid #FFC400;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .logoSpan{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width:90%;
+            text-align: center;
+        }
+        .logoDiv span{
+            font-weight: 600;
+            font-size: 22px;
+        }
+        .logo #amazon{
+            background-color: #FFC400;
+            padding: 3px;
+            color: #FFFFFF;
+        }
+        .logo #shoppers{
+            background-color: white;
+            border-top: 1px solid #FFC400;
+            border-bottom: 1px solid #FFC400;
+            padding: 3px;
+        }
+        ul.nav{
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
+    li.navItem{
+      height: 50px;
+      width: 100%;
+      /* border: #202124 1px solid; */
+      list-style: none;
+      margin: 0;
+      /* padding: 5px; */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* padding-left: 10px; */
+    }
+    li.navItem:nth-child(4){
+      margin-top: 200px;
+      /* position: absolute;
+      bottom: 10px;
+      width: 100%; */
+    }
+    .navItem span{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 10px;
+      min-width: 30px;
+    }
+    li.navItem:hover {
+      background-color: #E0EEEE;
+      color: white;
+    }
+    .sidenav a {
+      text-decoration: none;
+      color: black;
+      display: block;
+      width: 100%;
+      height: 50px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .navItem img{
+      width: 24px;
+      height: 24px;
+    }
+    .navItem.active{
+      background-color: #E0EEEE;
+    }
+
+    .contentWrapper{
+      background-color: #DAD9DE;
+      padding: 10px;
+      padding-top: 10px;
+      padding-right: 10px;
+      padding-left: 10px;
+      height: 100vh;
+      width: 85%;
+      overflow: auto;
+      /* padding-left: 30px;
+      padding-right: 30px; */
+      /* padding-right: 30px;
+       */
+    }
+    .idDiv{
+        background-color: white;
+        width: 100%;
+        height: 70px;
+        display: flex;
+        justify-content:  flex-end;
+        align-items: center;
+        border-radius: 5px;
+
+    }
+    #profileSpan{
+      display: flex;
+      justify-content:  space-around;
+      align-items: center;
+      
+    }
+    #profileParent{
+      height: 40px;
+      width:40px;
+      border-radius: 50%;
+      background-color: #DAD9DE;
+      margin: 5px;
+    }
+
+    .locationDiv{
+      height: 50px;
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+
+    .summary{
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width:100%;
+      background-color: #DAD9DE;
+      margin-bottom: 20px;
+      /* border:1px solid greenyellow; */
+    }
+    .summaryDiv{
+      height:70px;
+      /* margin-right: 20px; */
+      border-radius: 5px;
+      width: 25%;
+      background-color: white;
+      border:1px solid greenyellow;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .summaryDiv:nth-child(1){
+      margin-right: 10px;
+    }
+    .summaryDiv:nth-child(2){
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+    .summaryDiv:nth-child(3){
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+    .summaryDiv:nth-child(4){
+      /* margin-right: 10px; */
+      margin-left: 10px;
+    }
+    #summaryTitle{
+      font-size: 16px;
+      font-weight: 700;
+      color: #DAD9DE;
+    }
+    #summaryValue{
+      font-size: 20px;
+      font-weight: 800;
+    }
+    .recentDivWrapper{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      background-color: white;
+    }
+    .recentDiv{
+      width: 100%;
+      padding: 5px;
+      height: 100%;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    table {
+      width: 90%;
+      border-collapse: collapse;
+      margin-bottom: 50px;
+    }
+
+    th, td {
+      border: 1px solid black;
+      /* padding: 8px; */
+      text-align: center;
+      height: 30px;
+      
+    }
+    </style>
+</head>
+<body>
+    <div class="root">
+        <div class="sidenav">
+            <div class="logoDiv">
+                <span class="logoSpan">
+                  <a href="/home">
+                      <span class="logo">
+                          <span id="amazon">AMAZON</span><span id="shoppers">SHOPPERS</span>
+                    </span>
+                  </a>
+                </span>
+            </div>
+            <ul class="nav">
+                <li class="navItem ">
+                    <a href="/home">
+                        <span class="imageSpan">
+                          <img src="/public/icons/icons8-home-48.png" alt="I">
+                        </span>
+                        <span>
+                          Home
+                        </span>
+                    </a>
+                </li>
+                <li class="navItem active">
+                    <a href="/home/credits">
+                        <span>
+                          <img src="/public/icons/icons8-money-48.png" alt="I">
+                        </span>
+                          <span>
+                            Credits
+                          </span>
+                      </a>
+                </li>
+                <li class="navItem">
+                    <a href="/home/affiliate">
+                        <span>
+                          <img src="/public/icons/icons8-link-48.png" alt="I">
+                        </span>
+                          <span>
+                            Affiliate
+                          </span>
+                      </a>
+                </li>
+                <li class="navItem">
+                    <a href="/home/signout">
+                        <span>
+                          <img src="/public/icons/icons8-sign-out-50.png" alt="I">
+                        </span>
+                          <span>
+                            Sign Out
+                          </span>
+                      </a>
+                </li>
+            </ul>
+        </div>
+
+    <div class="contentWrapper">
+        <div class="idDiv">
+            <span id="profileSpan">
+                <span>amazon-id</span>
+                <span id="profileParent"></span>
+            </span>
+        </div>
+        <div class="locationDiv">
+
+        </div>
+        <div class="summary">
+            <div class='summaryDiv'id="creditSummary">
+              <span id="summaryTitle">Credits</span>
+              <span id="summaryValue"><%= profileData.totalCredits %></span>
+            </div>
+            <div class='summaryDiv'id="spendSummary">
+              <span id="summaryTitle">Spend</span>
+              <span id="summaryValue">$<%= profileData.yourCreds.reduce((sum, obj) => sum + (obj.product.price || 0), 0) %></span>
+            </div>
+            <div class='summaryDiv'id="creditSummary">
+              <span id="summaryTitle">Earnings</span>
+              <span id="summaryValue">$645</span>
+            </div>
+            <div class='summaryDiv'id="creditSummary">
+              <span id="summaryTitle">Earnings</span>
+              <span id="summaryValue">$645</span>
+            </div>
+        </div>
+        <div class="recentDivWrapper">
+          <div class="recentDiv">
+            <h4>Recent Transactions</h4>
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Price</th>
+                  <th>Credits</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Date One</td>
+                  <td>Time One</td>
+                  <td>Price One</td>
+                  <td>Credit One</td>
+                </tr>
+                <tr>
+                  <td>Date Two</td>
+                  <td>Time Two</td>
+                  <td>Price Two</td>
+                  <td>Credit Two</td>
+                </tr>
+                <tr>
+                  <td>Date Three</td>
+                  <td>Time Three</td>
+                  <td>Price Three</td>
+                  <td>Credit Three</td>
+                </tr>
+                <tr>
+                  <td>Date Four</td>
+                  <td>Time Four</td>
+                  <td>Price Four</td>
+                  <td>Credit Four</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+    </div>
+</body>
+</html>

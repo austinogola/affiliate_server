@@ -11,7 +11,8 @@ router.get('/', checkToken,async(req, res) => {
     let profileData=await dataProvider.getProfileData(req.token)
     // let newProds=await parseHomeData(profileData.products)
     // console.log(profileData)
-   
+    // console.log(profileData.thisMonthCreds);
+    res.cookie('graphData', profileData.dataForCurrentMonth);
     res.render('home',{profileData:profileData});
     // res.sendFile(path.join(__dirname, '/public/home.html'));
   });
@@ -23,13 +24,13 @@ router.get('/', checkToken,async(req, res) => {
     res.render('home/credits',{profileData:profileData});
   });
 
-  router.get('/code', checkToken,async(req, res) => {
+  router.get('/affiliate', checkToken,async(req, res) => {
     let profileData=await dataProvider.getProfileData(req.token)
     // let newProds=await parseHomeData(profileData.products)
     // console.log(newProds)
     // console.log(profileData);
     // console.log(profileData);
-    res.render('home/code',{profileData:profileData});
+    res.render('home/affiliate',{profileData:profileData});
   });
 
   router.post('/code', checkToken,async(req, res) => {

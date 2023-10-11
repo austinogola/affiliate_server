@@ -10,6 +10,12 @@ app.use(express.static("./public"))
 app.use('/public/icons/', express.static('./public/icons'))
 
 
+ 
+
+
+
+
+
 //connect to mongodb
 connectDb()
 

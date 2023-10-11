@@ -1,5 +1,16 @@
 const Affiliate=require('../model/affiliate')
 
+const getAffiliateHistory=( code)=>{
+    return new Promise(async(resolve, reject)=>{
+        if(! code){
+            resolve(false)
+        }
+        else{
+            let aff=await  Affiliate.find( {code})
+            resolve(aff)
+        }
+    })
+}
 const addAffiliate=async(affiliateDetails)=>{
     return new Promise(async(resolve, reject) => {
         if(!affiliateDetails){
@@ -90,4 +101,4 @@ const getUserAffiliates=async(userId)=>{
     })
 }
 
-module.exports={addAffiliate,getToShow,updateAffiliateUse,getUserAffiliates}
+module.exports={addAffiliate,getToShow,updateAffiliateUse,getUserAffiliates,getAffiliateHistory}

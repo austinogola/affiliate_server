@@ -25,7 +25,8 @@ const CreditShema=new mongoose.Schema({
             price:{type:Number},
             currency:{type:String}
         },
-        value:{type:Number,required: true}
+        value:{type:Number,required: true},
+        complete:{type:Boolean,default:false}
     
 })
 
