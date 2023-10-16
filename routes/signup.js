@@ -21,10 +21,16 @@ router.post('/', async(req, res) => {
   }
   else{
     let userExists=await UserHandler.getUserByEmail(email)
+    let amazonIdExist=await UserHandler.getUserByAmazon(amazon_code)
     if(userExists){
-      console.log('User exists');
-      res.status(403).send({message: 'Invalid credentials. Try again with a different email/password'})
-    }else{
+      res.status(403).send({message: 'Email already registered . Try logging in'})
+      return
+    }
+    if(amazonIdExist){
+      res.status(403).send({message: 'Amazon code belongs to another account.'})
+      return
+    }
+    else{
       const hashedPwd=await hashPassword(password)
       let userDetails={
             email:email,

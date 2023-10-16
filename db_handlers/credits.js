@@ -29,6 +29,41 @@ function generateRandomProduct() {
     return { name: productName, price: parseFloat(productPrice) };
 }
 
+const updatePending=(_id)=>{
+    return new Promise(async(resolve, reject)=>{
+        if(!_id){
+            resolve(false)
+        }
+        else{
+            let updateComplete=await Credit.findOneAndUpdate(
+                {_id:_id},
+                {complete: true },
+                { new: true }
+            );
+            resolve(updateComplete)
+        }
+                
+
+    })
+}
+
+const getPending=(userId)=>{
+    return new Promise(async(resolve, reject) => {
+        if(!userId){
+            resolve(false)
+            return;
+        }
+        const credits=await Credit.find({creditOwner:userId,complete:false}).sort(
+            {stamp:-1})
+        if(credits) {
+            resolve(credits)
+        }
+        else{
+            resolve(false)
+        }
+
+    })
+}
 const addCredit=async(creditInfo)=>{
     return new Promise(async(resolve, reject) => {
         if(!creditInfo){
@@ -36,9 +71,9 @@ const addCredit=async(creditInfo)=>{
             return
         }
         const item={}
-        const {name,price,benefactorCode,ownerCode}=creditInfo
+        const {name,price,benefactorCode,ownerCode,productId}=creditInfo
         item.stamp=creditInfo.timestamp
-        item.product={name,price}
+        item.product={name,price,productId}
         item.product.currency='$'
         item.ownerCode=ownerCode
         item.benefactorCode=benefactorCode
@@ -169,4 +204,9 @@ const getCreditsByBenefactor=async(userId)=>{
 }
 
 
-module.exports={addCredit,checkExisting,getCredit,getCreditsByOwner,getCreditsByBenefactor}
+module.exports={
+    addCredit,checkExisting,
+    getCredit,getCreditsByOwner,
+    getCreditsByBenefactor,getPending,
+    updatePending
+}

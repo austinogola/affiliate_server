@@ -539,7 +539,7 @@
                   <!-- <span><%= new Date(credit.stamp).toLocaleTimeString() %></span> -->
                   <span id='nameRow'><%= credit.product.name.split("-")[0] %></span>
                   <span><%= credit.product.price %></span>
-                  <span>Pending</span>
+                  <span><%= credit.complete?'Confirmed':'Pending' %></span>
                   <span><%= credit.value %></span>
             </div>
           </div>

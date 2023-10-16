@@ -51,7 +51,7 @@ const updateAffiliateUse=async(creditInfo)=>{
                     { $push: { activity: creditInfo._id } },
                     { new: true }
                 );
-                
+                resolve(changeLastUsed)
                 
             } catch (error) {
                 console.log(error.message)

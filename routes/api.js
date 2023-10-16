@@ -61,6 +61,33 @@ router.post('/initCredit', checkToken,async(req, res) => {
 	
     // res.render('home',{profileData:profileData});
 });
+router.get('/pendingCredits',checkToken,async(req,res)=>{
+	const tokenDetails=await tokenHandler.verifyToken(req.token)
+	if(tokenDetails){
+		const credits=await CreditHandler.getPending(tokenDetails.userId)
+		res.status(200).json({credits})
+	}
+	else{
+		res.status(200).json({message:'BAD'})
+	}
+})
+router.get('/completeCredit',checkToken,async(req,res)=>{
+	const tokenDetails=await tokenHandler.verifyToken(req.token)
+	if(tokenDetails){
+		let creditId=req.query.id
+		const creditUpdate=await CreditHandler.updatePending(creditId)
+		if(creditUpdate){
+			res.status(200).json({message:'GOOD'})
+		}
+		else{
+			res.status(200).json({message:'BAD'})
+		}
+		
+	}
+	else{
+		res.status(200).json({message:'BAD'})
+	}
+})
 
 router.post('/addCredit',async(req,res)=>{
 	const creditInfo={...req.body};
