@@ -1,9 +1,10 @@
 var ProductAdvertisingAPIv1 = require('paapi5-nodejs-sdk');
+require('dotenv').config()
 
 var defaultClient = ProductAdvertisingAPIv1.ApiClient.instance;
 
-defaultClient.accessKey = 'AKIAIMD4UKXZRFQONA4A';
-defaultClient.secretKey = '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';
+defaultClient.accessKey = process.env.paapi5AccessKey
+defaultClient.secretKey = process.env.paapi5SecretKey
 
 defaultClient.host = 'webservices.amazon.com';
 defaultClient.region = 'us-east-1';

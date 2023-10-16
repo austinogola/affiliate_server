@@ -113,7 +113,6 @@ function generateDataForCurrentMonth() {
         const todayNum=new Date().getDate()
         const relevantspendObjsArr=spendObjsArr.filter(item=>item.x<=todayNum+1)
         let tt=splitArrays(relevantspendObjsArr)
-        console.log(tt);
         let timeObj={
             month:getMonthName(new Date().getMonth()),
             year:new Date().getFullYear(),
